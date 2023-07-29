@@ -4,7 +4,7 @@ import re, pyperclip
 phoneRegex = re.compile(r'''
 (
 ((\+ | 00)\s*(216) | \((\+ | 00)\s*216\))? #Tunisian Code +216
-\s?\d+\s?\d+\s?\d+\s?\d+\s?\d+\s?\d+\s?\d+\s?\d+#The rest of the 8 digit phone number. Each digit could have any number of space before and/or after it.
+^[0-9]{8}$
 )
 ''', re.VERBOSE)
 #TEmail Regex

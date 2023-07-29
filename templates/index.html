@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Email and Phone Number extractor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link
+        href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAAAAAAAEQARAAAAAAEQAAEQAAAAEQAAABEAAAEQAAAAARAAABEAAAARAAAAARAAARAAAAAAEQARAAAAAAABABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD9vwAA+Z8AAPPPAADn5wAAz/MAAOfnAADzzwAA+Z8AAP2/AAD//wAA//8AAP//AAD//wAA"
+        rel="icon" type="image/x-icon" />
+</head>
+
+<body>
+
+    <h1 class="p-4 text-center">Phone Number and email extractor</h1>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <form action="/" method="post">
+                        <textarea name="user_text" rows="10" class="form-control" placeholder="Paste your text here"
+                            cols="50" aria-describedby="button-addon2"></textarea><br>
+                        <input type="submit" value="Extract" class="btn btn-outline-secondary" id="button-addon2">
+                    </form>
+                </div>
+            </div>
+            <div class="col">
+                <h3>Instructions:</h3>
+                <p>Copy the text that has the phone numbers and
+                    the emails that you would like to extract
+                    and paste them in the box.</p>
+                <h5>App by amin HIDRI.</h5>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col">
+                {% if resultPhoneNumber %}
+                <h4>Phone number list:</h4>
+                <pre>{{ resultPhoneNumber }}</pre>
+                {% endif %}
+            </div>
+            <div class="col">
+                {% if resultEmailAdress %}
+                <h4>Email list:</h4>
+                <pre>{{ resultEmailAdress }}</pre>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</body>
+
+</html>
