@@ -37,7 +37,7 @@ def index():
         # Format the results
         results = {
             "resultPhoneNumber": "\n".join(phoneNumbers),
-            "resultEmailAdress": "\n".join(extractedEmail)
+            "resultEmailAdress": ",\n".join(extractedEmail)
         }
 
         return render_template('index.html', **results)
