@@ -89,7 +89,7 @@
                 <h4>Phone number list:</h4>
                 <div class="d-flex align-items-center">
 
-                    <textarea rows="5" id="phoneNumberResult">{{ phoneNumberList }}</textarea>
+                    <textarea rows="5" id="phoneNumberResult" readonly>{{ phoneNumberList }}</textarea>
                     <input type="button" onclick="copyPhoneNumber()" value="Copy"
                         class="copyPhoneNumberBtn btn btn-outline-secondary m-2" id="button-addon2">
 
@@ -108,7 +108,7 @@
                 {% if emailList %}
                 <h4>Email list:</h4>
                 <div class="d-flex align-items-center">
-                    <textarea rows="5" cols="25" id="emailResult">{{ emailList }}</textarea>
+                    <textarea rows="5" cols="25" id="emailResult" readonly>{{ emailList }}</textarea>
                     <input type="button" onclick="copyEmailAdress()" value="Copy"
                         class="copyEmailBtn btn btn-outline-secondary m-2" id="button-addon2">
 
