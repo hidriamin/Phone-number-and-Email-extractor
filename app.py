@@ -1,48 +1,43 @@
-import re
 from flask import Flask, render_template, request
-
 app = Flask(__name__)
+import re
 
-@app.route('/', methods=['GET', 'POST'])
+
+@app.route("/", methods=["GET", "POST"])
 def index():
-    if request.method == 'POST':
-        user_text = request.form['user_text']
-
-        # Phone number Regex
-        phoneRegex = re.compile(r'''
-        (
-        (\+216 | 00 216 | \(\+216\))? #Tunisian Code +216
-        \s?-?\d\s?-?\d\s?-?\d\s?-?\d\s?-?\d\s?-?\d\s?-?\d\s?-?\d
-        )
-        ''', re.VERBOSE)
-        
-        # Email Regex
-        emailRegex = re.compile(r'''
-        [a-zA-Z0-9._+]+ #First part
+    if request.method == "POST":
+        #Phone number regex
+        phoneRegex = re.compile(r"""(
+        (\+\s?216 | 00\s?216 | \(\+\s?216\) | \(00\s?216\))? #Tunisian country code
+        \s?\d\s?-?\d\s?-?\d\s?-?\d\s?-?\d\s?-?\d\s?-?\d\s?-?\d\s?-? #number
+        )""",re.VERBOSE)
+        #Email regex
+        emailRegex = re.compile(r"""[a-zA-Z0-9]+ #first part
         @ #@
-        [a-zA-Z0-9._+]+ #Domain name
-        ''', re.VERBOSE)
+        [a-zA-Z0-9.\-]+ #domain name""", re.VERBOSE)
         
-        # Extract email and phone from the text
-        extractedPhone = phoneRegex.findall(user_text)
-        extractedEmail = emailRegex.findall(user_text)
-
+        #get the user text
+        text = request.form["user_text"]
+        
+        #match the phone number and email regex
+        phoneNumberMatch = phoneRegex.findall(text)
+        emailAdresses = emailRegex.findall(text)
+        
+        #only use the first item in each tuple because it's the full number 
         phoneNumbers = []
+        for num in phoneNumberMatch:
+            phoneNumbers.append(num[0])
+            
+        
+        #format the list
+        phoneNumberList = "\n".join(phoneNumbers)
+        emailList = "\n".join(emailAdresses)
+        
+        return render_template("index.html",phoneNumberList=phoneNumberList, emailList=emailList)
+    
+    return render_template("index.html",phoneNumberList="",emailList="")
 
-        for number in extractedPhone:
-            # Remove newline character from the phone number
-            spacelessNumber = number[0].replace('\n', '')
-            phoneNumbers.append(spacelessNumber)
 
-        # Format the results
-        results = {
-            "resultPhoneNumber": "\n".join(phoneNumbers),
-            "resultEmailAdress": ",\n".join(extractedEmail)
-        }
-
-        return render_template('index.html', **results)
-
-    return render_template('index.html', resultPhoneNumber=None, resultEmailAdress=None)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+   
+if __name__ == "__main__":
+    app.run(debug=True)           
