@@ -6,6 +6,11 @@ copyPhoneNumber = () => {
   textToCopy.select();
   //copy to clipboard
   document.execCommand("copy");
+  //get the copied success notification and make it visible
+  let numberCopyNotification = document.querySelector(
+    ".phoneNumberCopyNotification"
+  );
+  numberCopyNotification.classList.remove("hidden");
 };
 
 copyEmailAdress = () => {
@@ -16,6 +21,9 @@ copyEmailAdress = () => {
   textToCopy.select();
   //copy to clipboard
   document.execCommand("copy");
+  //get the copied success notification and make it visible
+  let emailCopyNotification = document.querySelector(".emailCopyNotification");
+  emailCopyNotification.classList.remove("hidden");
 };
 
 let phoneNumberCopyBtn = document.querySelector(".copyPhoneNumberBtn");
