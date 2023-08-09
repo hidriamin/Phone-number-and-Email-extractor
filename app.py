@@ -14,7 +14,9 @@ def index():
         #Email regex
         emailRegex = re.compile(r"""[a-zA-Z0-9]+ #first part
         @ #@
-        [a-zA-Z0-9.\-]+ #domain name""", re.VERBOSE)
+        [a-zA-Z0-9.\-]+ #domain name(first part)
+        \. #dot
+        [a-zA-Z0-9.\-]{2,3} #domain name last part (exemple: .com .net)""", re.VERBOSE)
         
         #get the user text
         text = request.form["user_text"]
