@@ -31,7 +31,7 @@ def index():
         
         #format the list
         phoneNumberList = "\n".join(phoneNumbers)
-        emailList = "\n".join(emailAdresses)
+        emailList = ",\n".join(emailAdresses)
         
         return render_template("index.html",phoneNumberList=phoneNumberList, emailList=emailList)
     
